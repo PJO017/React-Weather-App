@@ -11,17 +11,9 @@ export const Week = (props) => {
 
     useEffect(() => {
         var newDays = [];
-        const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
         for(let i = 0; i < data.length; i++) {
-            let date = new Date(data[i].dt*1000);
-            let day = date.getDay()
-            let dt = `${date.getMonth()+1}/${date.getUTCDate()}`
-
-            console.log(date);
-            console.log(day);
-
-            newDays.push(<Day dt={dt} day={daysOfWeek[day]} temp_high={data[i].temp.max} temp_low={data[i].temp.min} status={data[i].weather[0].id}/>);
+            newDays.push(<Day data={data[i]} />);
         }
 
         setDays(newDays);
@@ -30,7 +22,7 @@ export const Week = (props) => {
     return (
         <div className="main-week">
             <ul className="week-list">
-                {days.map(day => <li>{day}</li>)}
+                {days.map(day => <div className="day">{day}</div>)}
             </ul>
         </div>
     )
